@@ -1,0 +1,20 @@
+import { Router } from 'express';
+import { authRouter } from './auth.routes.js';
+import { customersRouter } from './customers.routes.js';
+import { cardsRouter } from './cards.routes.js';
+import { transactionsRouter } from './transactions.routes.js';
+import { paymentsRouter } from './payments.routes.js';
+import { adminRouter } from './admin.routes.js';
+import { settingsRouter } from './settings.routes.js';
+import { statsRouter } from './stats.routes.js';
+
+export const apiRouter = Router();
+apiRouter.get('/health', (_req, res) => res.json({ ok: true, service: 'shieldpay', now: new Date().toISOString() }));
+apiRouter.use('/auth', authRouter);
+apiRouter.use('/customers', customersRouter);
+apiRouter.use('/cards', cardsRouter);
+apiRouter.use('/transactions', transactionsRouter);
+apiRouter.use('/payments', paymentsRouter);
+apiRouter.use('/admin', adminRouter);
+apiRouter.use('/settings', settingsRouter);
+apiRouter.use('/stats', statsRouter);
